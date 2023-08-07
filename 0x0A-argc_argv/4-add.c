@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
 /**
  * main - print some of arg
@@ -11,13 +10,17 @@ int main(int argc, char *argv[])
 {
 	int i = 1;
 	int sum = 0;
+	char *c = 0;
 
 	while (i < argc)
 	{
-		if (isdigit(*argv[i]) == 0)
+		for (c = argv[i]; *c ; c++)
 		{
+			if (*c < '0' || *c > '9')
+			{
 			printf("Error\n");
 			return (1);
+			}
 		}
 		sum = sum + atoi(argv[i]);
 		i++;
