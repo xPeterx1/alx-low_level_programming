@@ -1,4 +1,4 @@
-"dog.h"
+#include "dog.h"
 /**
  * init_dog - function to derefrence a variable
  * @d : pointer to a structure
