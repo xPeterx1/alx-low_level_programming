@@ -12,38 +12,42 @@ dog_t *new_dog(char *name, float age, char *owner)
 {
 
 	int numofw, word;
+	char *hold1, *hold2;
 	dog_t *pointer = malloc(sizeof(dog_t));
 
 	if (pointer != NULL)
 {
 	for (numofw = 0, word = 0; *(name + word) != '\0'; word++, numofw++)
 	;
-	pointer->name = malloc(sizeof(char) * numofw + 1);
-		if (pointer->name == NULL)
+	hold1 = malloc(sizeof(char) * numofw + 1);
+		if (hold1 == NULL)
 		{
 			free(pointer);
 			return (NULL);
 		}
 	for (word = 0; word <= (numofw + 1); word++)
 	{
-		*(pointer->name + word) = *(name + word);
+		*(hold1 + word) = *(name + word);
 
 	}
 	for (numofw = 0, word = 0; *(owner + word) != '\0'; word++, numofw++)
 	;
-	pointer->owner = malloc(sizeof(char) * numofw + 1);
-		if (pointer->owner == NULL)
+		hold2 = malloc(sizeof(char) * numofw + 1);
+		if (hold2 == NULL)
 		{
 			free(pointer);
+			free(hold2);
 			return (NULL);
 		}
 
 	for (word = 0; word <= (numofw + 1); word++)
 	{
-		*(pointer->owner + word) = *(owner + word);
+		*(hold2 + word) = *(owner + word);
 
 	}
 	pointer->age = age;
+	pointer->name = hold1;
+	pointer->owner = hold2;
 	return (pointer);
 }
 	return (NULL);
