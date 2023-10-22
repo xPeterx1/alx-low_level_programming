@@ -1,6 +1,7 @@
 #include "dog.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 /**
  * new_dog - Function that creates a new dog.
  * @name: type pointer char name.
@@ -10,47 +11,39 @@
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
+	struct dog *techie;
+	char *i, *j;
+	int x, y, z;
 
-	int numofw, word;
-	char *hold1, *hold2;
-	dog_t *pointer = malloc(sizeof(dog_t));
+	techie = malloc(sizeof(struct dog));
+	if (techie == NULL)
+		return (NULL);
 
-	if (pointer != NULL)
-{
-	for (numofw = 0, word = 0; *(name + word) != '\0'; word++, numofw++)
-	;
-	hold1 = malloc(sizeof(char) * numofw + 1);
-		if (hold1 == NULL)
-		{
-			free(pointer);
-			return (NULL);
-		}
-	for (word = 0; word <= (numofw + 1); word++)
+	for (x = 0; *(name + x) != '\0'; x++)
+		;
+	for (y = 0; *(owner + y) != '\0'; y++)
+		;
+	i = malloc(sizeof(char) * x + 1);
+	if (i == NULL)
 	{
-		*(hold1 + word) = *(name + word);
-
+		free(techie);
+		return (NULL);
 	}
-	for (numofw = 0, word = 0; *(owner + word) != '\0'; word++, numofw++)
-	;
-		hold2 = malloc(sizeof(char) * numofw + 1);
-		if (hold2 == NULL)
-		{
-			free(pointer);
-			free(hold2);
-			return (NULL);
-		}
-
-	for (word = 0; word <= (numofw + 1); word++)
+	j = malloc(sizeof(char) * y + 1);
+	if (j == NULL)
 	{
-		*(hold2 + word) = *(owner + word);
-
+		free(i);
+		free(techie);
+		return (NULL);
 	}
-	pointer->age = age;
-	pointer->name = hold1;
-	pointer->owner = hold2;
-	return (pointer);
-}
-	return (NULL);
+	for (z = 0; z <= x; z++)
+		*(i + z) = *(name + z);
+	for (z = 0; z <= y; z++)
+		*(j + z) = *(owner + z);
 
-}
+	techie->name = i;
+	techie->age = age;
+	techie->owner = j;
 
+	return (techie);
+}
