@@ -24,7 +24,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 			free(pointer);
 			return (NULL);
 		}
-	for (word = 0; word <= (numofw + 1); word++)
+	for (word = 0; word <= numofw; word++)
 	{
 		*(pointer->name + word) = *(name + word);
 
@@ -38,7 +38,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 			return (NULL);
 		}
 
-	for (word = 0; word <= (numofw + 1); word++)
+	for (word = 0; word <= numofw; word++)
 	{
 		*(pointer->owner + word) = *(owner + word);
 
