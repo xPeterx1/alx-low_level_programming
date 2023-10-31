@@ -8,19 +8,24 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int n = 0;
-	unsigned int dec = 0;
+	unsigned int bit = 0;
+	unsigned int convnum = 0;
 
 	if (b == NULL)
-		return (0);
-	while (*(b + n) != '\0')
+	return (0);
+	while (*(b + bit) == '1' || *(b + bit) == '0')
 	{
-		if (*(b + n) != '0' && *(b + n) != '1')
-			return (0);
-		dec <<= 1;
-		if (*(b + n) == '1')
-			dec ^= 1;
-		n++;
+		convnum <<= 1;
+		if (*(b + bit) == '1')
+		convnum |= 1;
+		bit++;
+
+
+
 	}
-	return (dec);
+	if (*(b + bit) == '\0')
+	return (convnum);
+	else
+	return (0);
+
 }
