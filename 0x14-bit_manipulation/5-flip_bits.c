@@ -13,13 +13,14 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 
 	temp = n ^ m;
 
-	if (temp & 1)
+	while (temp > 0)
+	{
+	if ((temp & 1) != 0)
 	numberofbytes++;
-	if (temp == 0)
+	temp =temp >> 1;
+	}
+
 	return (numberofbytes);
-	temp >>= 1;
-
-
 
 
 
