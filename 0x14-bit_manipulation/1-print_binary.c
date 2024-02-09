@@ -1,28 +1,45 @@
 #include "main.h"
-
-/**
- * _right_pbin_mask - recursion function to print bit 0 (acts as a mask)
- * @n: type const unsigned long int
- */
-
-void _right_pbin_mask(unsigned long int n)
-{
-	if (n == 0)
-		return;
-	_right_pbin_mask(n >> 1);
-	_putchar((n & 1) + '0');
-}
-
 /**
  * print_binary - prints the binary representation of a number
  * @n: type const unsigned long int
  * Return: binary number
  */
-
 void print_binary(unsigned long int n)
 {
+	int valueofbit = 0;
+	int numberofbits = 0;
+	int temp = n;
+	int comparison = 1;
+
 	if (n == 0)
+	{
 		_putchar('0');
-	else
-		_right_pbin_mask(n);
+		return;
+	}
+	while (temp != 0)
+	{
+		numberofbits++;
+		 temp >>= 1;
+
+
+	}
+	comparison <<= (numberofbits - 1);
+	while (comparison != 0)
+	{
+
+		valueofbit = n & comparison;
+		if (valueofbit != 0)
+		{
+			_putchar('1');
+		}
+		else
+		_putchar('0');
+		comparison >>= 1;
+
+
+	}
+	_putchar('\n');
+
+
+
 }
