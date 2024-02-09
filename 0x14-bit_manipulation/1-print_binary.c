@@ -6,10 +6,10 @@
  */
 void print_binary(unsigned long int n)
 {
-	int valueofbit = 0;
-	int numberofbits = 0;
-	int temp = n;
-	int comparison = 1;
+	unsigned long int valueofbit = 0;
+	unsigned long int numberofbits = 0;
+	unsigned long int temp = n;
+	unsigned long int comparison = 1;
 
 	if (n == 0)
 	{
@@ -38,7 +38,7 @@ void print_binary(unsigned long int n)
 
 
 	}
-	_putchar('\n');
+
 
 
 
