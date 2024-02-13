@@ -11,6 +11,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	size_t fd;
 	char *buffer;
 	size_t actualletters;
+	size_t readcheck;
 
 	if (filename == NULL)
 	{
@@ -19,13 +20,22 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	buffer = malloc(sizeof(char) * letters);
 	if (buffer == NULL)
 	{
-	free(buffer);
 	return (-1);
 	}
 
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		free(buffer);
+		return (0);
+	}
 
-	read(fd, buffer, letters);
+	readcheck = read(fd, buffer, letters);
+	if (readcheck == -1)
+	{
+	free(buffer);
+	return (0);
+	}
 
 	actualletters = write(STDOUT_FILENO, buffer, letters);
 	if (actualletters != letters)
