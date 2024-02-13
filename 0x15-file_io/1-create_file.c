@@ -29,7 +29,7 @@ else
 	{
 	temp++;
 	}
-	wr = write(fd, text_content, sizeof(char) * (count + 1));
+	wr = write(fd, text_content, sizeof(char) * count);
 	if (wr == -1 || wr != count)
 	{
 		return (-1);
