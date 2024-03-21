@@ -34,10 +34,10 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 	{
 		newnode->next = *(head);
 		(*head)->prev = newnode;
-		(*head)->next = NULL;
 		*(head) = newnode;
 
 	}
+	free(newnode);
 	return (newnode);
 
 }
