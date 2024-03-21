@@ -8,27 +8,44 @@
  *
  * Return: Always EXIT_SUCCESS.
  */
-int main(void)
-{
-    dlistint_t *head;
-    dlistint_t *new;
-    dlistint_t hello = {8, NULL, NULL};
-    size_t n;
 
-    head = &hello;
-    new = malloc(sizeof(dlistint_t));
-    if (new == NULL)
+typedef dlistint_t  node;
+
+    int main(int argc, char *argv[])
+{
+    // Memory for numbers
+    node *list = NULL;
+
+    // For each command-line argument
+    for (int i = 1; i < argc; i++)
     {
-        dprintf(2, "Error: Can't malloc\n");
-        return (EXIT_FAILURE);
+        // Convert argument to int
+        int number = atoi(argv[i]);
+
+        // Allocate node for number
+        node *n = malloc(sizeof(node));
+        if (n == NULL)
+        {
+            return 1;
+        }
+        n->n = number;
+        n->next = NULL;
+
+        // Prepend node to list
+        n->next = list;
+        list = n;
     }
-    new->n = 9;
-    head->prev = new;
-    new->next = head;
-    new->prev = NULL;
-    head = new;
-    n = print_dlistint(head);
-    printf("-> %lu elements\n", n);
-    free(new);
-    return (EXIT_SUCCESS);
+        printf(" list is equal :%p", list);
+    // Print numbers
+   int x = print_dlistint(list);
+   printf ("number of nodes is :%i\n", x);
+
+    // Free memory
+    node *ptr = list;
+    while (ptr != NULL)
+    {
+        node *next = ptr->next;
+        free(ptr);
+        ptr = next;
+    }
 }

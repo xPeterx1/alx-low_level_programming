@@ -11,7 +11,7 @@ size_t print_dlistint(const dlistint_t *h)
 
 	if (h == NULL)
 	{
-		return (1);
+		exit(-1);
 	}
 	tmp = h;
 	numofnodes = 0;
