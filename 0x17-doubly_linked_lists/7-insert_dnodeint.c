@@ -24,7 +24,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	tmp = *h;
 	if (idx == 0)
 	{
-		add_dnodeint(h, n);
+		return (add_dnodeint(h, n));
 	}
 	numofnodes = 0;
 	while (tmp != NULL)
@@ -42,7 +42,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	}
 		if (numofnodes == idx)
 		{
-			add_dnodeint_end(h, n);
+			return (add_dnodeint_end(h, n));
 		}
 	return (NULL);
 }
