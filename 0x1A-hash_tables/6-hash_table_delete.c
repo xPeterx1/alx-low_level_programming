@@ -8,17 +8,21 @@
  **/
 void free_list(hash_node_t *head)
 {
-	hash_node_t *temp;
+    hash_node_t *tmp;
+    hash_node_t *next;
 
-	while (head)
-	{
-		temp = head->next;
-		free(head->key);
-		free(head->value);
-		free(head);
-		head = temp;
-	}
+    tmp = head;
+
+    while (tmp != NULL)
+    {
+        next = tmp->next;
+        free(tmp->key);
+        free(tmp->value);
+        free(tmp);
+        tmp = next;
+    }
 }
+
 
 /**
  * hash_table_delete - deletes a hash table
@@ -26,13 +30,21 @@ void free_list(hash_node_t *head)
  **/
 void hash_table_delete(hash_table_t *ht)
 {
-	unsigned long int i;
+	hash_node_t *current;
+	unsigned long int index;
 
-	if (!ht)
-		return;
+	index = 0;
 
-	for (i = 0; i < ht->size; i++)
-		free_list(ht->array[i]);
+	while (index < ht->size)
+	{
+	current = ht->array[index];
+	if (current == NULL)
+	{
+		continue;
+	}
+	free_list(current);
+	index++;
+	}
 	free(ht->array);
 	free(ht);
 }
