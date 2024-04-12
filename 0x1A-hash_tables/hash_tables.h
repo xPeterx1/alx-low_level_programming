@@ -21,4 +21,9 @@ unsigned long int key_index(const unsigned char *key, unsigned long int size);
 int hash_table_set(hash_table_t *ht, const char *key, const char *value);
 hash_node_t* create_item(const char* key, const char* value);
 void add_item(hash_node_t *head, hash_node_t *item);
+void print_list(hash_node_t *h);
+void hash_table_print(const hash_table_t *ht);
+char *hash_table_get(const hash_table_t *ht, const char *key);
+void free_list(hash_node_t *head);
+void hash_table_delete(hash_table_t *ht)
 #endif
