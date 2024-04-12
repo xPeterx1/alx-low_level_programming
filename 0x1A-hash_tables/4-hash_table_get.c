@@ -10,21 +10,40 @@
  */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
+	hash_node_t *current;
 	unsigned long int index;
-	hash_node_t *node = NULL;
 
-	if (!ht || !key || !strcmp(key, ""))
-		return (NULL);
-
+	if (ht == NULL || key == NULL)
+	return (NULL);
 	index = key_index((const unsigned char *)key, ht->size);
-	node = (ht->array)[index];
-
-	while (node)
+	current = ht->array[index];
+	if (current == NULL)
 	{
-		if (!strcmp(node->key, (char *)key))
-			return (node->value);
-		node = node->next;
+	return (NULL);
 	}
+	if (strcmp(key, current->key) == 0)
+	{
+		return (current->value);
+	}
+	else
+	{
 
+		if (current->next == NULL)
+		{
+			return (NULL);
+		}
+		else
+		{
+			while (current != NULL)
+			{
+			if (strcmp(key, current->key) == 0)
+			{
+				return (current->value);
+			}
+			current = current->next;
+			}
+			return (NULL);
+		}
+	}
 	return (NULL);
 }

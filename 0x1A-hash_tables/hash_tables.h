@@ -25,5 +25,5 @@ void print_list(hash_node_t *h);
 void hash_table_print(const hash_table_t *ht);
 char *hash_table_get(const hash_table_t *ht, const char *key);
 void free_list(hash_node_t *head);
-void hash_table_delete(hash_table_t *ht)
+void hash_table_delete(hash_table_t *ht);
 #endif
